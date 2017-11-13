@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TranslationViewController.h
 //  Translator
 //
 //  Created by MS on 13.11.2017.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface TranslationViewController : UIViewController
 
 @end
-
