@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -81,6 +80,9 @@
                                         <exclude reference="seT-KP-1jG"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Alr-5F-8TG"/>
+                                </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oco-u1-2PL">
                                 <rect key="frame" x="25" y="327" width="55.5" height="21"/>
@@ -88,7 +90,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OtE-n8-u7P">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OtE-n8-u7P">
                                 <rect key="frame" x="25" y="363" width="325" height="166.5"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -101,7 +103,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERE-N0-9x5">
-                                <rect key="frame" x="87.5" y="564.5" width="200" height="35"/>
+                                <rect key="frame" x="87.5" y="574.5" width="200" height="35"/>
                                 <color key="backgroundColor" red="0.40476280450820923" green="0.64111119508743286" blue="0.97932261228561401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Bep-Xe-fQ3"/>
@@ -139,17 +141,31 @@
                                         <include reference="yeg-N6-Dwp"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="favoriteButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eYI-M2-Zv3"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rTc-so-rm8">
+                                <rect key="frame" x="102" y="328" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaB-Mt-Jns">
+                                <rect key="frame" x="261" y="534.5" width="89" height="30"/>
+                                <state key="normal" title="Прослушать"/>
+                                <state key="selected" title="Остановить"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="QaB-Mt-Jns" firstAttribute="top" secondItem="OtE-n8-u7P" secondAttribute="bottom" constant="5" id="0L4-c8-YFF"/>
                             <constraint firstItem="OtE-n8-u7P" firstAttribute="top" secondItem="Oco-u1-2PL" secondAttribute="bottom" constant="15" id="2ab-65-Hs1"/>
                             <constraint firstItem="ERE-N0-9x5" firstAttribute="top" secondItem="OtE-n8-u7P" secondAttribute="bottom" constant="30" id="4hD-LR-4k1">
-                                <variation key="heightClass=regular" constant="35"/>
+                                <variation key="heightClass=regular" constant="45"/>
                             </constraint>
                             <constraint firstItem="osW-eS-vgc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="4hg-ha-N0E"/>
+                            <constraint firstItem="rTc-so-rm8" firstAttribute="centerY" secondItem="Oco-u1-2PL" secondAttribute="centerY" id="4ri-MC-H3q"/>
                             <constraint firstItem="AvP-hU-7GD" firstAttribute="leading" secondItem="osW-eS-vgc" secondAttribute="leading" id="5vg-qr-9nD"/>
                             <constraint firstItem="osW-eS-vgc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="6nN-B0-2ui"/>
+                            <constraint firstItem="QaB-Mt-Jns" firstAttribute="trailing" secondItem="OtE-n8-u7P" secondAttribute="trailing" id="7qj-hw-Uqd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OtE-n8-u7P" secondAttribute="trailing" constant="25" id="8hX-Ev-7hx"/>
                             <constraint firstItem="OtE-n8-u7P" firstAttribute="leading" secondItem="Oco-u1-2PL" secondAttribute="leading" id="A2M-Kp-vQa"/>
                             <constraint firstItem="Oco-u1-2PL" firstAttribute="baseline" secondItem="osW-eS-vgc" secondAttribute="baseline" id="Dym-MZ-Xac"/>
@@ -159,6 +175,7 @@
                                 <variation key="heightClass=compact" constant="70"/>
                             </constraint>
                             <constraint firstItem="Oco-u1-2PL" firstAttribute="top" secondItem="AvP-hU-7GD" secondAttribute="bottom" constant="35" id="Mcz-lX-dvn"/>
+                            <constraint firstItem="rTc-so-rm8" firstAttribute="leading" secondItem="Oco-u1-2PL" secondAttribute="trailing" constant="21.5" id="RxZ-et-vPl"/>
                             <constraint firstItem="AvP-hU-7GD" firstAttribute="top" secondItem="osW-eS-vgc" secondAttribute="bottom" constant="15" id="SyB-JI-a6l"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AvP-hU-7GD" secondAttribute="bottom" constant="35" id="Tj2-IX-Q0g">
                                 <variation key="heightClass=compact" constant="70"/>
@@ -247,9 +264,15 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Переводчик" id="W7E-nZ-ZfX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="c2y-aK-hfj"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="ILc-KU-X1e"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="c2y-aK-hfj">
+                            <connections>
+                                <segue destination="70y-tw-UjD" kind="show" id="6ol-8f-Nkp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="rTc-so-rm8" id="ZUL-dr-Gqb"/>
                         <outlet property="originalTextView" destination="AvP-hU-7GD" id="YQX-kX-22S"/>
                         <outlet property="translatedTextView" destination="OtE-n8-u7P" id="lKF-UV-xah"/>
                     </connections>
@@ -258,20 +281,48 @@
             </objects>
             <point key="canvasLocation" x="186.97183098591549" y="138.75"/>
         </scene>
-        <!--Favorites View Controller-->
+        <!--Избранное-->
         <scene sceneID="wHP-Th-C5g">
             <objects>
                 <viewController id="70y-tw-UjD" customClass="FavoritesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0T6-mu-K8e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xbn-3e-3zw">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="zdb-Kt-ekk">
+                                    <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCellIdentifier" id="3Es-4a-6Ey">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Es-4a-6Ey" id="AkJ-u2-PTA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Xbn-3e-3zw" firstAttribute="bottom" secondItem="ZJr-HM-lRx" secondAttribute="bottom" id="BeR-Ok-I1T"/>
+                            <constraint firstItem="Xbn-3e-3zw" firstAttribute="trailing" secondItem="ZJr-HM-lRx" secondAttribute="trailing" id="R4Q-XX-Q8g"/>
+                            <constraint firstItem="Xbn-3e-3zw" firstAttribute="leading" secondItem="ZJr-HM-lRx" secondAttribute="leading" id="j94-AF-b3l"/>
+                            <constraint firstItem="Xbn-3e-3zw" firstAttribute="top" secondItem="ZJr-HM-lRx" secondAttribute="top" id="z3o-Fm-uPH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZJr-HM-lRx"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Избранное" id="2Z3-XK-zBl"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NJg-aI-1QG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879" y="140"/>
+            <point key="canvasLocation" x="901.60000000000002" y="139.880059970015"/>
         </scene>
     </scenes>
 </document>
