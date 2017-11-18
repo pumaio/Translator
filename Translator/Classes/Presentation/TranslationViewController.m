@@ -76,7 +76,9 @@
 #pragma mark - Text View Delegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    [self translateOriginalText:textView.text];
+    if (textView.text.length > 0) {
+        [self translateOriginalText:textView.text];
+    }
 }
 
 #pragma mark - Actions
