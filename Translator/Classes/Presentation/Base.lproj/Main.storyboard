@@ -145,10 +145,10 @@
                                     <action selector="favoriteButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eYI-M2-Zv3"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rTc-so-rm8">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rTc-so-rm8">
                                 <rect key="frame" x="102" y="328" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaB-Mt-Jns">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaB-Mt-Jns">
                                 <rect key="frame" x="261" y="534.5" width="89" height="30"/>
                                 <state key="normal" title="Прослушать"/>
                                 <state key="selected" title="Остановить"/>

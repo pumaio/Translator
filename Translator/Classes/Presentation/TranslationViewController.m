@@ -44,12 +44,15 @@
 
 - (void)translateOriginalText:(NSString *)originalText {
     self.originalText = originalText;
+    [self.activityIndicator startAnimating];
     TranslationService *service = [[TranslationService alloc] init];
     __weak TranslationViewController *weakSelf = self;
     [service translateText:originalText success:^(NSString *translation) {
         weakSelf.translatedText = translation;
+        [self.activityIndicator stopAnimating];
         [weakSelf showTranslation];
     } failure:^(NSString *errorMessage) {
+        [self.activityIndicator stopAnimating];
         [self showErrorWithMessage:errorMessage];
     }];
 }
