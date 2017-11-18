@@ -16,6 +16,9 @@
 		4E9EC0CA1FBA34120076BE31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EC0BA1FBA34120076BE31 /* Main.storyboard */; };
 		4E9EC0CB1FBA34120076BE31 /* PlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9EC0BE1FBA34120076BE31 /* PlaceHolderTextView.m */; };
 		4E9EC0CC1FBA34120076BE31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EC0C31FBA34120076BE31 /* Assets.xcassets */; };
+		4EAF67CF1FBF6430002FA586 /* BaseDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF67CE1FBF6430002FA586 /* BaseDataLoader.m */; };
+		4EAF67D41FBF6771002FA586 /* TranslationTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF67D31FBF6771002FA586 /* TranslationTransport.m */; };
+		4EAF67D71FBF6F10002FA586 /* TranslationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAF67D61FBF6F10002FA586 /* TranslationService.m */; };
 		555150070BB15F054F1E8E94 /* libPods-Translator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22627012152A63075BA8585E /* libPods-Translator.a */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +38,14 @@
 		4E9EC0C01FBA34120076BE31 /* TranslationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationViewController.h; sourceTree = "<group>"; };
 		4E9EC0C11FBA34120076BE31 /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
 		4E9EC0C31FBA34120076BE31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4EAF67CD1FBF6430002FA586 /* BaseDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDataLoader.h; sourceTree = "<group>"; };
+		4EAF67CE1FBF6430002FA586 /* BaseDataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDataLoader.m; sourceTree = "<group>"; };
+		4EAF67D01FBF64A2002FA586 /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		4EAF67D11FBF651A002FA586 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4EAF67D21FBF6771002FA586 /* TranslationTransport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TranslationTransport.h; sourceTree = "<group>"; };
+		4EAF67D31FBF6771002FA586 /* TranslationTransport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TranslationTransport.m; sourceTree = "<group>"; };
+		4EAF67D51FBF6F10002FA586 /* TranslationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TranslationService.h; sourceTree = "<group>"; };
+		4EAF67D61FBF6F10002FA586 /* TranslationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TranslationService.m; sourceTree = "<group>"; };
 		80F7A861F526E47898A0CC1F /* Pods-Translator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Translator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Translator/Pods-Translator.release.xcconfig"; sourceTree = "<group>"; };
 		B2AB87AE415131F914FC3591 /* Pods-Translator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Translator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Translator/Pods-Translator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +105,8 @@
 		4E9EC0AF1FBA34120076BE31 /* SupportedFiles */ = {
 			isa = PBXGroup;
 			children = (
+				4EAF67D11FBF651A002FA586 /* PrefixHeader.pch */,
+				4EAF67D01FBF64A2002FA586 /* Defines.h */,
 				4E9EC0B01FBA34120076BE31 /* main.m */,
 				4E9EC0B11FBA34120076BE31 /* Info.plist */,
 			);
@@ -110,6 +123,7 @@
 		4E9EC0B41FBA34120076BE31 /* BuisnessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				4EAF67CC1FBF6430002FA586 /* Transport */,
 				4EB8A2621FBA3D9E007008BA /* Service */,
 			);
 			path = BuisnessLogic;
@@ -154,9 +168,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		4EAF67CC1FBF6430002FA586 /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				4EAF67CD1FBF6430002FA586 /* BaseDataLoader.h */,
+				4EAF67CE1FBF6430002FA586 /* BaseDataLoader.m */,
+				4EAF67D21FBF6771002FA586 /* TranslationTransport.h */,
+				4EAF67D31FBF6771002FA586 /* TranslationTransport.m */,
+			);
+			path = Transport;
+			sourceTree = "<group>";
+		};
 		4EB8A2621FBA3D9E007008BA /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4EAF67D51FBF6F10002FA586 /* TranslationService.h */,
+				4EAF67D61FBF6F10002FA586 /* TranslationService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -305,10 +332,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E9EC0CB1FBA34120076BE31 /* PlaceHolderTextView.m in Sources */,
+				4EAF67D41FBF6771002FA586 /* TranslationTransport.m in Sources */,
 				4E9EC0C61FBA34120076BE31 /* AppDelegate.m in Sources */,
 				4E9EC0C71FBA34120076BE31 /* TranslationViewController.m in Sources */,
+				4EAF67CF1FBF6430002FA586 /* BaseDataLoader.m in Sources */,
 				4E9EC0C81FBA34120076BE31 /* FavoritesViewController.m in Sources */,
 				4E9EC0C41FBA34120076BE31 /* main.m in Sources */,
+				4EAF67D71FBF6F10002FA586 /* TranslationService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3638K5WU6E;
+				GCC_PREFIX_HEADER = Translator/Classes/SupportedFiles/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Translator/Classes/SupportedFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = puzyrevams.Translator;
@@ -460,6 +491,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3638K5WU6E;
+				GCC_PREFIX_HEADER = Translator/Classes/SupportedFiles/PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Translator/Classes/SupportedFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = puzyrevams.Translator;

@@ -7,6 +7,7 @@
 //
 
 #import "TranslationViewController.h"
+#import "TranslationService.h"
 
 @interface TranslationViewController () <UITextViewDelegate>
 
@@ -25,7 +26,7 @@
     [self addHideKeyboardRecognizer];
 }
 
-#pragma mark - Methods
+#pragma mark - Keyboard
 
 - (void)addHideKeyboardRecognizer {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -36,15 +37,21 @@
     [self.originalTextView resignFirstResponder];
 }
 
+#pragma mark - Methods
+
 - (void)translateOriginalText:(NSString *)originalText {
     self.translatedTextView.text = [NSString stringWithFormat:@"Переведено: %@", originalText];
 }
 
-
 #pragma mark - Text View Delegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    [self translateOriginalText:textView.text];
+    TranslationService *service = [[TranslationService alloc] init];
+    [service translateText:@"i'm belive i'm file" success:^(NSString *translation) {
+        
+    } failure:^(NSString *errorMessage) {
+        
+    }];
 }
 
 #pragma mark - Actions
