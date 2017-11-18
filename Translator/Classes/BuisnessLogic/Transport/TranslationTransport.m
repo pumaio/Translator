@@ -17,14 +17,12 @@ NSString *const langParam = @"ru-en";
 - (void)translateText:(NSString *)text
                                 success:(void (^)(NSDictionary *translationJSON))success
                                 failure:(void (^)(NSString *errorMessage))failure {
-    NSString *urlStringWithParams = [TranslateURLString stringByAppendingString:[NSString stringWithFormat:@"?key=%@&lang=%@", [self apiKey], langParam]];
-    NSString *url = [BaseURL stringByAppendingString:urlStringWithParams];
+    NSString *url = [self translateURL];
     
-    NSString *postDataString = [NSString stringWithFormat:@"text=%@", text];
-    NSMutableData *postData = [[NSMutableData alloc] initWithData:[postDataString dataUsingEncoding:NSUTF8StringEncoding]];
-
-    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:url parameters:nil error:nil];
-    request.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
+    NSString *bodyString = [NSString stringWithFormat:@"text=%@", text];
+    NSData *postData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest *request = [self postRequestWithURL:url parameters:nil];
     [request setHTTPBody:postData];
     
     [[self dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
@@ -36,6 +34,20 @@ NSString *const langParam = @"ru-en";
             failure(error.localizedDescription);
         }
     }] resume];
+}
+
+#pragma mark - Helpers Methods
+
+- (NSString *)translateURL {
+    NSString *urlStringWithParams = [TranslateURLString stringByAppendingString:[NSString stringWithFormat:@"?key=%@&lang=%@", [self apiKey], langParam]];
+    NSString *url = [BaseURL stringByAppendingString:urlStringWithParams];
+    return url;
+}
+
+- (NSMutableURLRequest *)postRequestWithURL:(NSString *)url parameters:(id)parameters {
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:url parameters:parameters error:nil];
+    request.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
+    return request;
 }
 
 - (NSString *)apiKey {
