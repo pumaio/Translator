@@ -55,7 +55,10 @@
 }
 
 - (void)showErrorWithMessage:(NSString *)message {
-    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Ошибка" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:ok];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)showTranslation {

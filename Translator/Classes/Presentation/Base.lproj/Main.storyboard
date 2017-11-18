@@ -90,7 +90,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OtE-n8-u7P">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OtE-n8-u7P">
                                 <rect key="frame" x="25" y="363" width="325" height="166.5"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -274,7 +274,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="rTc-so-rm8" id="ZUL-dr-Gqb"/>
                         <outlet property="originalTextView" destination="AvP-hU-7GD" id="YQX-kX-22S"/>
-                        <outlet property="translatedTextView" destination="OtE-n8-u7P" id="lKF-UV-xah"/>
+                        <outlet property="translatedTextView" destination="OtE-n8-u7P" id="z0q-zL-P5O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
