@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E30D7431FC0895500484649 /* FavoriteTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E30D7421FC0895500484649 /* FavoriteTranslation.m */; };
 		4E9EC0C41FBA34120076BE31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9EC0B01FBA34120076BE31 /* main.m */; };
 		4E9EC0C51FBA34120076BE31 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E9EC0B11FBA34120076BE31 /* Info.plist */; };
 		4E9EC0C61FBA34120076BE31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9EC0B31FBA34120076BE31 /* AppDelegate.m */; };
@@ -24,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		22627012152A63075BA8585E /* libPods-Translator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Translator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E30D7411FC0895500484649 /* FavoriteTranslation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteTranslation.h; sourceTree = "<group>"; };
+		4E30D7421FC0895500484649 /* FavoriteTranslation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteTranslation.m; sourceTree = "<group>"; };
 		4E9EC0711FBA19CE0076BE31 /* Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Translator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E9EC0AE1FBA34120076BE31 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4E9EC0B01FBA34120076BE31 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E30D7401FC0891400484649 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				4E30D7411FC0895500484649 /* FavoriteTranslation.h */,
+				4E30D7421FC0895500484649 /* FavoriteTranslation.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		4E9EC0681FBA19CD0076BE31 = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +106,6 @@
 			children = (
 				4E9EC0AE1FBA34120076BE31 /* AppDelegate.h */,
 				4E9EC0B31FBA34120076BE31 /* AppDelegate.m */,
-				4E9EC0B21FBA34120076BE31 /* Model */,
 				4E9EC0B41FBA34120076BE31 /* BuisnessLogic */,
 				4E9EC0B51FBA34120076BE31 /* Presentation */,
 				4E9EC0AF1FBA34120076BE31 /* SupportedFiles */,
@@ -113,16 +124,10 @@
 			path = SupportedFiles;
 			sourceTree = "<group>";
 		};
-		4E9EC0B21FBA34120076BE31 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		4E9EC0B41FBA34120076BE31 /* BuisnessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				4E30D7401FC0891400484649 /* Storage */,
 				4EAF67CC1FBF6430002FA586 /* Transport */,
 				4EB8A2621FBA3D9E007008BA /* Service */,
 			);
@@ -332,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E9EC0CB1FBA34120076BE31 /* PlaceHolderTextView.m in Sources */,
+				4E30D7431FC0895500484649 /* FavoriteTranslation.m in Sources */,
 				4EAF67D41FBF6771002FA586 /* TranslationTransport.m in Sources */,
 				4E9EC0C61FBA34120076BE31 /* AppDelegate.m in Sources */,
 				4E9EC0C71FBA34120076BE31 /* TranslationViewController.m in Sources */,

@@ -8,6 +8,8 @@
 
 #import "TranslationService.h"
 #import "TranslationTransport.h"
+#import "FavoriteTranslation.h"
+#import <Realm.h>
 
 @implementation TranslationService
 
@@ -23,6 +25,23 @@
             failure (errorMessage);
         }
     }];
+}
+
+- (void)saveTranslationWithOriginalText:(NSString *)originalText
+                         translatedText:(NSString *)translatedText {
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    FavoriteTranslation *translation = [[FavoriteTranslation alloc] init];
+    translation.originalText = originalText;
+    translation.translatedText = translatedText;
+    [realm addObject:translation];
+    [realm commitWriteTransaction];
+}
+
+- (void)deleteTranslation:(FavoriteTranslation *)translation {
+    [[RLMRealm defaultRealm] beginWriteTransaction];
+    [[RLMRealm defaultRealm]deleteObject:translation];
+    [[RLMRealm defaultRealm] commitWriteTransaction];
 }
 
 @end
