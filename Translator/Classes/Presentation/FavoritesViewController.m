@@ -7,8 +7,13 @@
 //
 
 #import "FavoritesViewController.h"
+#import <Realm.h>
+#import "FavoriteTranslation.h"
 
 @interface FavoritesViewController ()
+
+@property (strong, nonatomic) RLMResults *favorites;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -18,6 +23,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadData];
+}
+
+- (void)loadData {
+    self.favorites = [FavoriteTranslation allObjects];
+    [self.tableView reloadData];
+}
+#pragma mark - Methods
+
+#pragma mark - Table View
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.favorites count];
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *reuseIdentifier = @"FavoriteCellIdentifier";
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
+    if (cell == nil) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+    }
+    
+    FavoriteTranslation *translation = [self.favorites objectAtIndex:indexPath.row];
+    cell.textLabel.text = translation.originalText;
+    return cell;
 }
 
 @end

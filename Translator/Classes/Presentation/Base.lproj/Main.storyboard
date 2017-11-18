@@ -307,6 +307,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="70y-tw-UjD" id="c0f-VH-kU7"/>
+                                    <outlet property="delegate" destination="70y-tw-UjD" id="Vun-GK-6Cc"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -319,6 +323,9 @@
                         <viewLayoutGuide key="safeArea" id="ZJr-HM-lRx"/>
                     </view>
                     <navigationItem key="navigationItem" title="Избранное" id="2Z3-XK-zBl"/>
+                    <connections>
+                        <outlet property="tableView" destination="Xbn-3e-3zw" id="h6E-zZ-KbZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NJg-aI-1QG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

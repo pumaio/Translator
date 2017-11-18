@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSString *originalText;
 @property (strong, nonatomic) NSString *translatedText;
 
+@property (strong, nonatomic) TranslationService *service;
+
 @end
 
 @implementation TranslationViewController
@@ -27,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addHideKeyboardRecognizer];
+    self.service =  [[TranslationService alloc] init];
 }
 
 #pragma mark - Keyboard
@@ -45,9 +48,8 @@
 - (void)translateOriginalText:(NSString *)originalText {
     self.originalText = originalText;
     [self.activityIndicator startAnimating];
-    TranslationService *service = [[TranslationService alloc] init];
     __weak TranslationViewController *weakSelf = self;
-    [service translateText:originalText success:^(NSString *translation) {
+    [self.service translateText:originalText success:^(NSString *translation) {
         weakSelf.translatedText = translation;
         [self.activityIndicator stopAnimating];
         [weakSelf showTranslation];
@@ -77,6 +79,8 @@
 #pragma mark - Actions
 
 - (IBAction)favoriteButtonTapped:(id)sender {
+    [self.service saveTranslationWithOriginalText:self.originalText
+                                   translatedText:self.translatedText];
 }
 
 
