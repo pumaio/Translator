@@ -14,20 +14,28 @@ NSString *const langParam = @"ru-en";
 
 @implementation TranslationTransport
 
-- (NSURLSessionDataTask *)translateText:(NSString *)text
+- (void)translateText:(NSString *)text
                                 success:(void (^)(NSDictionary *translationJSON))success
                                 failure:(void (^)(NSString *errorMessage))failure {
-    NSString *url = [TranslateURLString stringByAppendingString:[NSString stringWithFormat:@"?key=%@&lang=%@", [self apiKey], langParam]];
-    NSDictionary *params = @{@"text" : text};
-    return [self POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            success(responseObject);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (failure) {
+    NSString *urlStringWithParams = [TranslateURLString stringByAppendingString:[NSString stringWithFormat:@"?key=%@&lang=%@", [self apiKey], langParam]];
+    NSString *url = [BaseURL stringByAppendingString:urlStringWithParams];
+    
+    NSString *postDataString = [NSString stringWithFormat:@"text=%@", text];
+    NSMutableData *postData = [[NSMutableData alloc] initWithData:[postDataString dataUsingEncoding:NSUTF8StringEncoding]];
+
+    NSMutableURLRequest *request = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:url parameters:nil error:nil];
+    request.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
+    [request setHTTPBody:postData];
+    
+    [[self dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (!error) {
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                success(responseObject);
+            }
+        } else {
             failure(error.localizedDescription);
         }
-    }];
+    }] resume];
 }
 
 - (NSString *)apiKey {

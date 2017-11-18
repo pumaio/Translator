@@ -13,17 +13,17 @@ NSString *const BaseURLString = BaseURL;
 @implementation BaseDataLoader
 
 - (instancetype)init {
-    self = [super initWithBaseURL:[NSURL URLWithString:BaseURLString]];
+    self = [super initWithBaseURL:[NSURL URLWithString:BaseURLString] sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     if (self) {
         self.requestSerializer = [AFJSONRequestSerializer serializer];
-        self.responseSerializer = [AFJSONResponseSerializer serializer];
+        self.responseSerializer =  [AFJSONResponseSerializer serializer];
         [self setupHeaders];
     }
     return self;
 }
 
 - (void)setupHeaders {
-    [self.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [self.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"content-type"];
 }
 
 @end

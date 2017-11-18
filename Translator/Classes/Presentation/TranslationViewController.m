@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *translatedTextView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+@property (strong, nonatomic) NSString *originalText;
+@property (strong, nonatomic) NSString *translatedText;
+
 @end
 
 @implementation TranslationViewController
@@ -40,18 +43,29 @@
 #pragma mark - Methods
 
 - (void)translateOriginalText:(NSString *)originalText {
-    self.translatedTextView.text = [NSString stringWithFormat:@"Переведено: %@", originalText];
+    self.originalText = originalText;
+    TranslationService *service = [[TranslationService alloc] init];
+    __weak TranslationViewController *weakSelf = self;
+    [service translateText:originalText success:^(NSString *translation) {
+        weakSelf.translatedText = translation;
+        [weakSelf showTranslation];
+    } failure:^(NSString *errorMessage) {
+        [self showErrorWithMessage:errorMessage];
+    }];
+}
+
+- (void)showErrorWithMessage:(NSString *)message {
+    
+}
+
+- (void)showTranslation {
+    self.translatedTextView.text = self.translatedText;
 }
 
 #pragma mark - Text View Delegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    TranslationService *service = [[TranslationService alloc] init];
-    [service translateText:@"i'm belive i'm file" success:^(NSString *translation) {
-        
-    } failure:^(NSString *errorMessage) {
-        
-    }];
+    [self translateOriginalText:textView.text];
 }
 
 #pragma mark - Actions

@@ -10,8 +10,8 @@
 
 @interface TranslationTransport : BaseDataLoader
 
-- (NSURLSessionDataTask *)translateText:(NSString *)text
-                                success:(void (^)(NSDictionary *translationJSON))success
-                                failure:(void (^)(NSString *errorMessage))failure;
+- (void)translateText:(NSString *)text
+              success:(void (^)(NSDictionary *translationJSON))success
+              failure:(void (^)(NSString *errorMessage))failure;
 
 @end

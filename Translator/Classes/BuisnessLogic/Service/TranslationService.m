@@ -16,7 +16,8 @@
               failure:(void (^)(NSString *errorMessage))failure {
     TranslationTransport *transport = [[TranslationTransport alloc] init];
     [transport translateText:text success:^(NSDictionary *translationJSON) {
-        
+        NSString *translation = translationJSON[@"text"];
+        success(translation);
     } failure:^(NSString *errorMessage) {
         if (failure) {
             failure (errorMessage);
