@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class FavoriteTranslation;
+@class RLMResults;
 
 @interface TranslationService : NSObject
 
@@ -16,9 +17,12 @@
               success:(void (^)(NSString *translation))success
               failure:(void (^)(NSString *errorMessage))failure;
 
+- (RLMResults *)getAllFavorites;
+
 - (void)saveTranslationWithOriginalText:(NSString *)originalText
                          translatedText:(NSString *)translatedText;
 
 - (void)deleteTranslation:(FavoriteTranslation *)translation;
+
 
 @end

@@ -27,6 +27,10 @@
     }];
 }
 
+- (RLMResults *)getAllFavorites {
+    return [FavoriteTranslation allObjects];
+}
+
 - (void)saveTranslationWithOriginalText:(NSString *)originalText
                          translatedText:(NSString *)translatedText {
     RLMRealm *realm = [RLMRealm defaultRealm];

@@ -9,11 +9,13 @@
 #import "FavoritesViewController.h"
 #import <Realm.h>
 #import "FavoriteTranslation.h"
+#import "TranslationService.h"
 
 @interface FavoritesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) RLMResults *favorites;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) TranslationService *service;
 
 @end
 
@@ -23,11 +25,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.service = [[TranslationService alloc] init];
+    
     [self loadData];
 }
 
 - (void)loadData {
-    self.favorites = [FavoriteTranslation allObjects];
+    self.favorites = [self.service getAllFavorites];
     [self.tableView reloadData];
 }
 #pragma mark - Methods
@@ -55,6 +60,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedTranslation = [self.favorites objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"SegueFromFavoritesToTranslation" sender:self];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        FavoriteTranslation *translation = [self.favorites objectAtIndex:indexPath.row];
+        [self.service deleteTranslation:translation];
+        [self loadData];
+    }
 }
 
 @end
