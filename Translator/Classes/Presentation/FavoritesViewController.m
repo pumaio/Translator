@@ -10,7 +10,7 @@
 #import <Realm.h>
 #import "FavoriteTranslation.h"
 
-@interface FavoritesViewController ()
+@interface FavoritesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) RLMResults *favorites;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -41,7 +41,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *reuseIdentifier = @"FavoriteCellIdentifier";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
     if (cell == nil) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
@@ -50,6 +50,11 @@
     FavoriteTranslation *translation = [self.favorites objectAtIndex:indexPath.row];
     cell.textLabel.text = translation.originalText;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedTranslation = [self.favorites objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"SegueFromFavoritesToTranslation" sender:self];
 }
 
 @end

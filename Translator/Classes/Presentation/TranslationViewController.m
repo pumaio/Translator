@@ -8,6 +8,8 @@
 
 #import "TranslationViewController.h"
 #import "TranslationService.h"
+#import "FavoritesViewController.h"
+#import "FavoriteTranslation.h"
 
 @interface TranslationViewController () <UITextViewDelegate>
 
@@ -52,7 +54,7 @@
     [self.service translateText:originalText success:^(NSString *translation) {
         weakSelf.translatedText = translation;
         [self.activityIndicator stopAnimating];
-        [weakSelf showTranslation];
+        [weakSelf reloadData];
     } failure:^(NSString *errorMessage) {
         [self.activityIndicator stopAnimating];
         [self showErrorWithMessage:errorMessage];
@@ -66,7 +68,8 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)showTranslation {
+- (void)reloadData {
+    self.originalTextView.text = self.originalText;
     self.translatedTextView.text = self.translatedText;
 }
 
@@ -83,6 +86,16 @@
                                    translatedText:self.translatedText];
 }
 
+#pragma mark - Navigation
 
+- (IBAction)returnFromFavorites:(UIStoryboardSegue *)segue {
+    if ([segue.identifier isEqualToString:@"SegueFromFavoritesToTranslation"]) {
+        FavoritesViewController *sourceVC = (FavoritesViewController *)segue.sourceViewController;
+        FavoriteTranslation *selectedTranslation = sourceVC.selectedTranslation;
+        self.originalText = selectedTranslation.originalText;
+        self.translatedText = selectedTranslation.translatedText;
+        [self reloadData];
+    }
+}
 
 @end

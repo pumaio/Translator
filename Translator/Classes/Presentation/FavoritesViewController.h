@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class FavoriteTranslation;
+
 @interface FavoritesViewController : UIViewController
+
+@property (strong, nonatomic) FavoriteTranslation *selectedTranslation;
 
 @end
