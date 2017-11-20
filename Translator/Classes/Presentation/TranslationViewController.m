@@ -91,7 +91,6 @@
 #pragma mark - AVSpeechSynthesizer
 
 -(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
-    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
     self.speechPaused = NO;
     [self.playPauseButton setSelected:NO];
     NSLog(@"Playback finished");
