@@ -12,7 +12,7 @@
 #import "FavoriteTranslation.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface TranslationViewController () <UITextViewDelegate>
+@interface TranslationViewController () <UITextViewDelegate, AVSpeechSynthesizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *originalTextView;
 @property (weak, nonatomic) IBOutlet UITextView *translatedTextView;
@@ -93,7 +93,6 @@
 -(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
     self.speechPaused = NO;
     [self.playPauseButton setSelected:NO];
-    NSLog(@"Playback finished");
 }
 
 
