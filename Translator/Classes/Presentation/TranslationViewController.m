@@ -10,6 +10,7 @@
 #import "TranslationService.h"
 #import "FavoritesViewController.h"
 #import "FavoriteTranslation.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface TranslationViewController () <UITextViewDelegate>
 
@@ -19,8 +20,11 @@
 
 @property (strong, nonatomic) NSString *originalText;
 @property (strong, nonatomic) NSString *translatedText;
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 
 @property (strong, nonatomic) TranslationService *service;
+@property (strong, nonatomic) AVSpeechSynthesizer *synthesizer;
+@property (nonatomic) BOOL speechPaused;
 
 @end
 
@@ -32,6 +36,9 @@
     [super viewDidLoad];
     [self addHideKeyboardRecognizer];
     self.service =  [[TranslationService alloc] init];
+    
+    self.synthesizer = [[AVSpeechSynthesizer alloc] init];
+    self.synthesizer.delegate = self;
 }
 
 #pragma mark - Keyboard
@@ -81,11 +88,38 @@
     }
 }
 
+#pragma mark - AVSpeechSynthesizer
+
+-(void)speechSynthesizer:(AVSpeechSynthesizer *)synthesizer didFinishSpeechUtterance:(AVSpeechUtterance *)utterance {
+    [self.playPauseButton setTitle:@"Play" forState:UIControlStateNormal];
+    self.speechPaused = NO;
+    [self.playPauseButton setSelected:NO];
+    NSLog(@"Playback finished");
+}
+
+
 #pragma mark - Actions
 
 - (IBAction)favoriteButtonTapped:(id)sender {
     [self.service saveTranslationWithOriginalText:self.originalText
                                    translatedText:self.translatedText];
+}
+
+- (IBAction)playPauseButtonTapped:(UIButton *)sender {
+    if (self.speechPaused == NO) {
+        [self.playPauseButton setSelected:YES];
+        [self.synthesizer continueSpeaking];
+        self.speechPaused = YES;
+    } else {
+        [self.playPauseButton setSelected:NO];
+        self.speechPaused = NO;
+        [self.synthesizer pauseSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    }
+    if (self.synthesizer.speaking == NO) {
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.translatedText];
+        utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-au"];
+        [self.synthesizer speakUtterance:utterance];
+    }
 }
 
 #pragma mark - Navigation

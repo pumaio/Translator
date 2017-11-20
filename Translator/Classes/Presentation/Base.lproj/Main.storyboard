@@ -148,15 +148,21 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rTc-so-rm8">
                                 <rect key="frame" x="102" y="328" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaB-Mt-Jns">
-                                <rect key="frame" x="261" y="534.5" width="89" height="30"/>
-                                <state key="normal" title="Прослушать"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaB-Mt-Jns">
+                                <rect key="frame" x="256" y="529.5" width="94" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Прослушать">
+                                    <color key="titleColor" red="0.40476280450000002" green="0.64111119510000003" blue="0.97932261229999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <state key="selected" title="Остановить"/>
+                                <connections>
+                                    <action selector="playPauseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DdW-E8-fZq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QaB-Mt-Jns" firstAttribute="top" secondItem="OtE-n8-u7P" secondAttribute="bottom" constant="5" id="0L4-c8-YFF"/>
+                            <constraint firstItem="QaB-Mt-Jns" firstAttribute="top" secondItem="OtE-n8-u7P" secondAttribute="bottom" id="0L4-c8-YFF"/>
                             <constraint firstItem="OtE-n8-u7P" firstAttribute="top" secondItem="Oco-u1-2PL" secondAttribute="bottom" constant="15" id="2ab-65-Hs1"/>
                             <constraint firstItem="ERE-N0-9x5" firstAttribute="top" secondItem="OtE-n8-u7P" secondAttribute="bottom" constant="30" id="4hD-LR-4k1">
                                 <variation key="heightClass=regular" constant="45"/>
@@ -274,6 +280,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="rTc-so-rm8" id="ZUL-dr-Gqb"/>
                         <outlet property="originalTextView" destination="AvP-hU-7GD" id="YQX-kX-22S"/>
+                        <outlet property="playPauseButton" destination="QaB-Mt-Jns" id="j5Z-gO-r9x"/>
                         <outlet property="translatedTextView" destination="OtE-n8-u7P" id="z0q-zL-P5O"/>
                     </connections>
                 </viewController>
