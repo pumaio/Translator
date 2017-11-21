@@ -11,4 +11,9 @@
 
 #define BaseURL @"https://translate.yandex.net"
 
+//Languages
+
+#define AVSpeechSynthesisVoiceLanguage @"en-au"
+#define TranslationLanguages @"ru-en"
+
 #endif

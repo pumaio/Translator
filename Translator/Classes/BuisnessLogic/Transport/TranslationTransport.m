@@ -10,7 +10,7 @@
 
 NSString *const TranslateURLString = @"/api/v1.5/tr.json/translate";
 
-NSString *const langParam = @"ru-en";
+NSString *const langParam = TranslationLanguages;
 
 @implementation TranslationTransport
 

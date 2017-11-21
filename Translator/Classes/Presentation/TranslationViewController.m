@@ -101,6 +101,24 @@
     [self.playPauseButton setSelected:NO];
 }
 
+- (void)setupSpeechSynthesizer {
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.translatedText];
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:AVSpeechSynthesisVoiceLanguage];
+    [self.synthesizer speakUtterance:utterance];
+}
+
+- (void)continueSpeaking {
+    [self.playPauseButton setSelected:YES];
+    [self.synthesizer continueSpeaking];
+    self.speechPaused = YES;
+}
+
+- (void)pauseSpeaking {
+    [self.playPauseButton setSelected:NO];
+    self.speechPaused = NO;
+    [self.synthesizer pauseSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+}
+
 #pragma mark - Actions
 
 - (IBAction)favoriteButtonTapped:(id)sender {
@@ -110,18 +128,12 @@
 
 - (IBAction)playPauseButtonTapped:(UIButton *)sender {
     if (self.speechPaused == NO) {
-        [self.playPauseButton setSelected:YES];
-        [self.synthesizer continueSpeaking];
-        self.speechPaused = YES;
+        [self continueSpeaking];
     } else {
-        [self.playPauseButton setSelected:NO];
-        self.speechPaused = NO;
-        [self.synthesizer pauseSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+        [self pauseSpeaking];
     }
     if (self.synthesizer.speaking == NO) {
-        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:self.translatedText];
-        utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-au"];
-        [self.synthesizer speakUtterance:utterance];
+        [self setupSpeechSynthesizer];
     }
 }
 
