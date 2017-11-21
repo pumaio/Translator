@@ -27,7 +27,6 @@
     [super viewDidLoad];
     
     self.service = [[TranslationService alloc] init];
-    
     [self loadData];
 }
 
@@ -35,7 +34,13 @@
     self.favorites = [self.service getAllFavorites];
     [self.tableView reloadData];
 }
+
 #pragma mark - Methods
+
+- (void)deleteTranslation:(FavoriteTranslation *)translation {
+    [self.service deleteTranslation:translation];
+    [self loadData];
+}
 
 #pragma mark - Table View
 
@@ -69,8 +74,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         FavoriteTranslation *translation = [self.favorites objectAtIndex:indexPath.row];
-        [self.service deleteTranslation:translation];
-        [self loadData];
+        [self deleteTranslation:translation];
     }
 }
 

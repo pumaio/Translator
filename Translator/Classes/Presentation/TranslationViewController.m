@@ -80,6 +80,12 @@
     self.translatedTextView.text = self.translatedText;
 }
 
+- (void)showFavoriteTranslation:(FavoriteTranslation *)translation {
+    self.originalText = translation.originalText;
+    self.translatedText = translation.translatedText;
+    [self reloadData];
+}
+
 #pragma mark - Text View Delegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
@@ -94,7 +100,6 @@
     self.speechPaused = NO;
     [self.playPauseButton setSelected:NO];
 }
-
 
 #pragma mark - Actions
 
@@ -126,9 +131,7 @@
     if ([segue.identifier isEqualToString:@"SegueFromFavoritesToTranslation"]) {
         FavoritesViewController *sourceVC = (FavoritesViewController *)segue.sourceViewController;
         FavoriteTranslation *selectedTranslation = sourceVC.selectedTranslation;
-        self.originalText = selectedTranslation.originalText;
-        self.translatedText = selectedTranslation.translatedText;
-        [self reloadData];
+        [self showFavoriteTranslation:selectedTranslation];
     }
 }
 
